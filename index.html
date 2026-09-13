@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spandan 2026 — Registrations Opening Soon</title>
+<meta name="description" content="Spandan 2026, The Enchanted Reverie — JIPMER Pondicherry's intercollegiate festival. Registrations opening soon." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canopy-950:#07130f;
+    --canopy-900:#0b1e17;
+    --canopy-800:#122c21;
+    --canopy-700:#1b3d2e;
+    --lantern:#e8b25a;
+    --lantern-soft:#f3cf8c;
+    --teal:#6fb3ac;
+    --toadstool:#c1483f;
+    --plum:#5c3352;
+    --parchment:#efe6d8;
+    --parchment-dim:#c9c0ae;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(232,178,90,0.10), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 85% 100%, rgba(92,51,82,0.35), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 10% 100%, rgba(111,179,172,0.12), transparent 55%),
+      linear-gradient(180deg, var(--canopy-950) 0%, var(--canopy-900) 45%, var(--canopy-800) 100%);
+    color:var(--parchment);
+    font-family:'Quicksand',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* ---------- Tangled canopy silhouette, top & bottom ---------- */
+  .canopy-top, .canopy-bottom{
+    position:fixed;
+    left:0; right:0;
+    height:14vh;
+    min-height:90px;
+    pointer-events:none;
+    z-index:2;
+    opacity:0.9;
+  }
+  .canopy-top{ top:0; }
+  .canopy-bottom{ bottom:0; transform:scaleY(-1); }
+  .canopy-top svg, .canopy-bottom svg{ width:100%; height:100%; display:block; }
+
+  /* ---------- Fireflies ---------- */
+  .fireflies{
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+  }
+  .firefly{
+    position:absolute;
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--lantern-soft);
+    box-shadow:0 0 6px 2px rgba(243,207,140,0.9), 0 0 14px 6px rgba(232,178,90,0.35);
+    opacity:0;
+    animation-name:drift, glow;
+    animation-timing-function:ease-in-out, ease-in-out;
+    animation-iteration-count:infinite, infinite;
+  }
+  @keyframes glow{
+    0%,100%{ opacity:0; }
+    15%{ opacity:0.9; }
+    50%{ opacity:0.35; }
+    85%{ opacity:0.9; }
+  }
+  @keyframes drift{
+    0%{ transform:translate(0,0); }
+    25%{ transform:translate(30px,-40px); }
+    50%{ transform:translate(-20px,-80px); }
+    75%{ transform:translate(-45px,-30px); }
+    100%{ transform:translate(0,0); }
+  }
+
+  /* ---------- Vine divider ---------- */
+  .vine-divider{
+    width:min(280px, 60vw);
+    height:22px;
+    margin:0 auto;
+    opacity:0.75;
+  }
+
+  /* ---------- Layout ---------- */
+  .stage{
+    position:relative;
+    z-index:3;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:14vh 1.5rem 12vh;
+    gap:1.7rem;
+  }
+
+  .mark{
+    font-family:'Caveat',cursive;
+    font-size:1.4rem;
+    color:var(--lantern-soft);
+    letter-spacing:0.02em;
+    margin:0;
+    transform:rotate(-2deg);
+  }
+
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(2.2rem, 6vw, 4rem);
+    line-height:1.08;
+    margin:0;
+    color:var(--parchment);
+    max-width:16ch;
+    text-wrap:balance;
+  }
+
+  h2{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:clamp(1.15rem, 2.6vw, 1.55rem);
+    color:var(--teal);
+    margin:0;
+    letter-spacing:0.01em;
+  }
+
+  .dates{
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    font-size:clamp(0.95rem, 2vw, 1.15rem);
+    color:var(--lantern);
+    letter-spacing:0.06em;
+    padding:0.5rem 1.4rem;
+    border-top:1px solid rgba(232,178,90,0.35);
+    border-bottom:1px solid rgba(232,178,90,0.35);
+  }
+
+  .description{
+    max-width:46ch;
+    font-size:clamp(1rem, 1.6vw, 1.12rem);
+    line-height:1.7;
+    color:var(--parchment-dim);
+    margin:0;
+  }
+
+  /* ---------- Countdown ---------- */
+  .countdown{
+    display:flex;
+    gap:clamp(0.8rem, 3vw, 1.6rem);
+    margin-top:0.3rem;
+  }
+  .countdown .unit{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-width:64px;
+  }
+  .countdown .num{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(1.8rem, 4.5vw, 2.6rem);
+    color:var(--parchment);
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .countdown .label{
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    color:var(--parchment-dim);
+    margin-top:0.35rem;
+    text-transform:lowercase;
+  }
+  .countdown .sep{
+    font-family:'Fraunces',serif;
+    font-size:clamp(1.5rem, 3.5vw, 2rem);
+    color:var(--lantern);
+    opacity:0.5;
+    align-self:flex-start;
+    margin-top:0.1rem;
+  }
+
+  /* ---------- CTA buttons ---------- */
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    justify-content:center;
+    margin-top:0.6rem;
+  }
+
+  .btn{
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    padding:0.85rem 1.7rem;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:0.55rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn:focus-visible{
+    outline:2px solid var(--lantern-soft);
+    outline-offset:3px;
+  }
+  .btn svg{ width:18px; height:18px; flex-shrink:0; }
+
+  .btn-primary{
+    background:linear-gradient(135deg, var(--lantern) 0%, #d99a3c 100%);
+    color:var(--canopy-950);
+    box-shadow:0 6px 20px -6px rgba(232,178,90,0.55);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 26px -6px rgba(232,178,90,0.7);
+  }
+
+  .btn-ghost{
+    background:rgba(239,230,216,0.04);
+    color:var(--parchment);
+    border-color:rgba(239,230,216,0.28);
+  }
+  .btn-ghost:hover{
+    transform:translateY(-2px);
+    background:rgba(239,230,216,0.09);
+    border-color:rgba(239,230,216,0.5);
+  }
+
+  .footnote{
+    margin-top:1rem;
+    font-size:0.8rem;
+    color:rgba(201,192,174,0.6);
+    font-style:italic;
+    font-family:'Fraunces',serif;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .firefly{ animation:none; opacity:0.5; }
+  }
+
+  @media (max-width:420px){
+    .countdown{ gap:0.6rem; }
+    .countdown .unit{ min-width:52px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="fireflies" id="fireflies"></div>
+
+  <div class="canopy-top" aria-hidden="true">
+    <svg viewBox="0 0 1200 140" preserveAspectRatio="none">
+      <path d="M0,0 L0,40 C60,70 120,20 180,45 C240,70 300,15 360,40 C420,65 480,20 540,42
+               C600,64 660,18 720,44 C780,70 840,22 900,46 C960,70 1020,20 1080,42
+               C1130,60 1170,30 1200,40 L1200,0 Z" fill="#07130f"/>
+      <path d="M0,0 L0,20 C80,45 160,10 240,26 C320,42 400,8 480,24 C560,40 640,10 720,26
+               C800,42 880,10 960,24 C1040,38 1120,12 1200,22 L1200,0 Z" fill="#0b1e17" opacity="0.85"/>
+    </svg>
+  </div>
+
+  <div class="canopy-bottom" aria-hidden="true">
+    <svg viewBox="0 0 1200 140" preserveAspectRatio="none">
+      <path d="M0,0 L0,40 C60,70 120,20 180,45 C240,70 300,15 360,40 C420,65 480,20 540,42
+               C600,64 660,18 720,44 C780,70 840,22 900,46 C960,70 1020,20 1080,42
+               C1130,60 1170,30 1200,40 L1200,0 Z" fill="#07130f"/>
+    </svg>
+  </div>
+
+  <main class="stage">
+    <p class="mark">The Enchanted Reverie</p>
+
+    <h1>Registrations Opening Soon!</h1>
+    <h2>Spandan 2026 — JIPMER Pondicherry</h2>
+
+    <div class="dates">October 26 – November 1, 2026</div>
+
+    <p class="description">
+      Prepare yourself to step into a fever dream. Delegate passes and event registrations will open shortly. Stay tuned!
+    </p>
+
+    <div class="countdown" id="countdown" aria-live="polite">
+      <div class="unit"><span class="num" id="cd-days">00</span><span class="label">days</span></div>
+      <span class="sep">:</span>
+      <div class="unit"><span class="num" id="cd-hours">00</span><span class="label">hrs</span></div>
+      <span class="sep">:</span>
+      <div class="unit"><span class="num" id="cd-mins">00</span><span class="label">min</span></div>
+      <span class="sep">:</span>
+      <div class="unit"><span class="num" id="cd-secs">00</span><span class="label">sec</span></div>
+    </div>
+
+    <svg class="vine-divider" viewBox="0 0 280 22" aria-hidden="true">
+      <path d="M2,11 C40,2 60,20 100,11 C140,2 160,20 200,11 C220,6 250,16 278,11"
+            stroke="#e8b25a" stroke-width="1.4" fill="none" opacity="0.7"/>
+      <circle cx="100" cy="11" r="2.2" fill="#e8b25a"/>
+      <circle cx="200" cy="11" r="2.2" fill="#e8b25a"/>
+    </svg>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.instagram.com/spandan_jipmer/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.2" cy="6.8" r="1"/>
+        </svg>
+        Follow @spandan_jipmer
+      </a>
+
+      <a class="btn btn-ghost" href="https://drive.google.com/file/d/1yfmSD6EkU26QryuHiFRCuO6wwK3P15Uh/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M6 2h9l5 5v15H6z"/>
+          <path d="M14 2v6h6"/>
+          <path d="M9 13h6M9 17h6"/>
+        </svg>
+        View Festival Brochure
+      </a>
+    </div>
+
+    <p class="footnote">a curious madness is on its way to Pondicherry</p>
+  </main>
+
+<script>
+  // ---- Fireflies ----
+  (function(){
+    var container = document.getElementById('fireflies');
+    var count = window.innerWidth < 600 ? 14 : 26;
+    for (var i = 0; i < count; i++){
+      var f = document.createElement('div');
+      f.className = 'firefly';
+      var top = Math.random() * 100;
+      var left = Math.random() * 100;
+      var duration = 6 + Math.random() * 8;
+      var glowDuration = 3 + Math.random() * 4;
+      var delay = Math.random() * 8;
+      f.style.top = top + 'vh';
+      f.style.left = left + 'vw';
+      f.style.animationDuration = duration + 's, ' + glowDuration + 's';
+      f.style.animationDelay = delay + 's, ' + (delay * 0.5) + 's';
+      container.appendChild(f);
+    }
+  })();
+
+  // ---- Countdown to Oct 26, 2026 00:00 IST ----
+  (function(){
+    var target = new Date('2026-10-26T00:00:00+05:30').getTime();
+
+    var elDays = document.getElementById('cd-days');
+    var elHours = document.getElementById('cd-hours');
+    var elMins = document.getElementById('cd-mins');
+    var elSecs = document.getElementById('cd-secs');
+
+    function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+    function tick(){
+      var now = Date.now();
+      var diff = target - now;
+
+      if (diff <= 0){
+        elDays.textContent = '00';
+        elHours.textContent = '00';
+        elMins.textContent = '00';
+        elSecs.textContent = '00';
+        return;
+      }
+
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var secs = Math.floor((diff % 60000) / 1000);
+
+      elDays.textContent = pad(days);
+      elHours.textContent = pad(hours);
+      elMins.textContent = pad(mins);
+      elSecs.textContent = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>
